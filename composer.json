@@ -1,0 +1,21 @@
+{
+    "name": "hexlet/code",
+    "authors": [
+        {
+            "name": "Liudmila",
+            "email": "liudmilagubanova18@gmail.com"
+        }
+    ],
+    "description": "hexlet php-project-48",
+    "require": {
+        "docopt/docopt": "^1.0"
+    },
+    "bin": [
+        "bin/gendiff"
+    ],
+    "autoload": {
+        "files": [
+            "src/Differ.php"
+        ]
+    }
+}
