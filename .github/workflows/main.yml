@@ -1,0 +1,24 @@
+name: PHP Linter and Tests
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Run Linter
+      run: make lint
+    
+    - name: Run Tests
+      run: make test
