@@ -2,14 +2,13 @@
 
 namespace Differ\Differ;
 
+use function Differ\Parsers\parseFile; 
+
 function genDiff(string $firstFilePath, string $secondFilePath, string $format = 'stylish'): string
 {
-    $firstFileContent = file_get_contents($firstFilePath);
-    $secondFileContent = file_get_contents($secondFilePath);
 
-    $decodedFirstFile = json_decode($firstFileContent, true);
-    $decodedSecondFile = json_decode($secondFileContent, true);
-
+    $decodedFirstFile = parseFile($firstFilePath);
+    $decodedSecondFile = parseFile($secondFilePath);
 
     $mergedArr = array_merge($decodedFirstFile, $decodedSecondFile);
     ksort($mergedArr);
@@ -36,7 +35,7 @@ function genDiff(string $firstFilePath, string $secondFilePath, string $format =
         $subArray[3] = convertBoolToString($subArray[3]);
         $string = implode(' ', $subArray);
         $finalString = "{$finalString}{$string}\n";
-        $result = "{\n{$finalString}\n}";
+        $result = "{\n{$finalString}}";
     }
     return $result;
 }

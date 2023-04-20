@@ -8,14 +8,16 @@
     ],
     "description": "hexlet php-project-48",
     "require": {
-        "docopt/docopt": "^1.0"
+        "docopt/docopt": "^1.0",
+        "symfony/yaml": "^6.2"
     },
     "bin": [
         "bin/gendiff"
     ],
     "autoload": {
         "files": [
-            "src/Differ.php"
+            "src/Differ.php",
+            "src/Parsers.php"
         ]
     },
     "require-dev": {

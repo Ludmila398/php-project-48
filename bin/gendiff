@@ -15,6 +15,7 @@ if (file_exists($autoloadPath1)) {
 use function Differ\Differ\genDiff;
 
 
+
 $doc = <<<DOC
 Generate diff
 
@@ -40,5 +41,4 @@ $secondFilePath = $args['<secondFile>'];
 $format = $args['--format'];
 
 print_r(genDiff($firstFilePath, $secondFilePath));
-
 
