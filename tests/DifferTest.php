@@ -13,8 +13,10 @@ class DifferTest extends TestCase
         $firstJsonFilePath = __DIR__ . "/fixtures/file1.json";
         $secondJsonFilePath = __DIR__ . "/fixtures/file2.json";
         $this->assertIsString(genDiff($firstJsonFilePath, $secondJsonFilePath));
-        $this->assertEquals(genDiff("tests/fixtures/file1.json", "tests/fixtures/file2.json"),
-        genDiff($firstJsonFilePath, $secondJsonFilePath));
+        $this->assertEquals(
+        genDiff("tests/fixtures/file1.json", "tests/fixtures/file2.json"),
+        genDiff($firstJsonFilePath, $secondJsonFilePath)
+        );
 
         $testFilePath = __DIR__ . "/fixtures/TestResultFlatFiles.txt";
         $expectedResult = file_get_contents($testFilePath);

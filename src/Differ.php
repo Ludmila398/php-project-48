@@ -2,7 +2,7 @@
 
 namespace Differ\Differ;
 
-use function Differ\Parsers\parseFile; 
+use function Differ\Parsers\parseFile;
 
 function genDiff(string $firstFilePath, string $secondFilePath, string $format = 'stylish'): string
 {
@@ -14,8 +14,11 @@ function genDiff(string $firstFilePath, string $secondFilePath, string $format =
     ksort($mergedArr);
     $arrDiff = [];
     foreach ($mergedArr as $key => $value) {
-        if ((array_key_exists($key, $decodedSecondFile)) && (array_key_exists($key, $decodedFirstFile))
-            && ($decodedFirstFile[$key] !== $decodedSecondFile[$key])) {
+        if (
+            (array_key_exists($key, $decodedSecondFile)) && 
+            (array_key_exists($key, $decodedFirstFile)) && 
+            ($decodedFirstFile[$key] !== $decodedSecondFile[$key])
+            ) {
             $arrDiff[] = ['-', $key, ':', $decodedFirstFile[$key]];
             $arrDiff[] = ['+', $key, ':', $value];
         } elseif (!array_key_exists($key, $decodedSecondFile)) {
