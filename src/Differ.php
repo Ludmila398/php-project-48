@@ -15,16 +15,18 @@ function genDiff(string $firstFilePath, string $secondFilePath, string $format =
     $arrDiff = [];
     foreach ($mergedArr as $key => $value) {
         if (
-            (array_key_exists($key, $decodedSecondFile)) && 
-            (array_key_exists($key, $decodedFirstFile)) && 
+            (array_key_exists($key, $decodedSecondFile)) &&
+            (array_key_exists($key, $decodedFirstFile)) &&
             ($decodedFirstFile[$key] !== $decodedSecondFile[$key])
-            ) {
+        ) {
             $arrDiff[] = ['-', $key, ':', $decodedFirstFile[$key]];
             $arrDiff[] = ['+', $key, ':', $value];
         } elseif (!array_key_exists($key, $decodedSecondFile)) {
             $arrDiff[] = ['-', $key, ':', $value];
-        } elseif ((array_key_exists($key, $decodedSecondFile) && (array_key_exists($key, $decodedFirstFile))
-            && ($decodedFirstFile[$key] === $decodedSecondFile[$key]))) {
+        } elseif (
+            (array_key_exists($key, $decodedSecondFile) && (array_key_exists($key, $decodedFirstFile))
+            && ($decodedFirstFile[$key] === $decodedSecondFile[$key]))
+        ) {
             $arrDiff[] = [' ', $key, ':', $value];
         } elseif (!array_key_exists($key, $decodedFirstFile)) {
             $arrDiff[] = ['+', $key, ':', $value];
