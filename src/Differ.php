@@ -5,7 +5,8 @@ namespace Differ\Differ;
 use function Differ\Parsers\parseFile;
 use function Differ\Formatter\formatFile;
 
-function buildAST(mixed $decodedFirstFile, mixed $decodedSecondFile): mixed {
+function buildAST(mixed $decodedFirstFile, mixed $decodedSecondFile): mixed
+{
 
     $firstFileKeys = array_keys($decodedFirstFile);
     $secondFileKeys = array_keys($decodedSecondFile);
@@ -52,7 +53,7 @@ function buildAST(mixed $decodedFirstFile, mixed $decodedSecondFile): mixed {
 }
 
 
-function genDiff(string $firstFilePath, string $secondFilePath, string $format = 'stylish') : string
+function genDiff(string $firstFilePath, string $secondFilePath, string $format = 'stylish'): string
 {
 
     $decodedFirstFile = parseFile($firstFilePath);

@@ -28,7 +28,7 @@ function formatStylish(mixed $array, int $spacesCount = 0): string
             case 'unchanged':
                 return "$stringBeginning    $key: $stringifyFirstValue";
             case 'added':
-                return "$stringBeginning  + $key: $stringifyFirstValue"; 
+                return "$stringBeginning  + $key: $stringifyFirstValue";
             case 'deleted':
                 return "$stringBeginning  - $key: $stringifyFirstValue";
             case 'changed':
@@ -38,7 +38,7 @@ function formatStylish(mixed $array, int $spacesCount = 0): string
                 return null;
         };
     }, $array);
- 
+
     $result = ["{", ...$formattedArray, "$stringBeginning}"];
     return implode("\n", $result);
 }
@@ -56,7 +56,8 @@ function stringify(mixed $value, int $spacesCount = 1): string
         $indentSize = $depth * $spacesCount;
         $indent = str_repeat('    ', $indentSize);
 
-        $lines = array_map(fn($key, $val) => "$indent    $key: {$iter($val, $depth + 1)}",
+        $lines = array_map(
+            fn($key, $val) => "$indent    $key: {$iter($val, $depth + 1)}",
             array_keys($currentValue),
             $currentValue
         );
@@ -68,4 +69,3 @@ function stringify(mixed $value, int $spacesCount = 1): string
 
     return $iter($value, 1);
 }
-
