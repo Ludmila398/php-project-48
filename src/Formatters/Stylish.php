@@ -23,7 +23,8 @@ function formatStylish(mixed $array, int $spacesCount = 0): string
         $secondValue = convertBoolToString($secondValue);
         switch ($status) {
             case 'nested':
-                $nestedValue = is_array($firstValue) ? formatStylish($firstValue, $spacesCount + 1) : stringify($firstValue);
+                $nestedValue = is_array($firstValue)
+                ? formatStylish($firstValue, $spacesCount + 1) : stringify($firstValue);
                 return "$stringBeginning    $key: $nestedValue";
             case 'unchanged':
                 return "$stringBeginning    $key: $stringifyFirstValue";
@@ -33,7 +34,8 @@ function formatStylish(mixed $array, int $spacesCount = 0): string
                 return "$stringBeginning  - $key: $stringifyFirstValue";
             case 'changed':
                 $stringifySecondValue = stringify($secondValue, $spacesCount + 1);
-                return "$stringBeginning  - $key: $stringifyFirstValue\n $stringBeginning + $key: $stringifySecondValue"; //
+                return "$stringBeginning  - $key: $stringifyFirstValue\n 
+                $stringBeginning + $key: $stringifySecondValue";
             default:
                 return null;
         };
