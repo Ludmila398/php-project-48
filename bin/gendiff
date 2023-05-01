@@ -38,7 +38,6 @@ foreach ($args as $k=>$v)
 
 $firstFilePath = $args['<firstFile>'];
 $secondFilePath = $args['<secondFile>'];
-$format = $args['--format'];
+$format = $args['--format'] ?? 'stylish';
 
-print_r(genDiff($firstFilePath, $secondFilePath));
-
+print_r(genDiff($firstFilePath, $secondFilePath, $format));

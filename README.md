@@ -15,3 +15,6 @@
 
 ### asciinema.org ./bin/gendiff comparing yaml files:
 [![asciicast](https://asciinema.org/a/Vih2GPNGo34FCWmXS0c1fpVFc.svg)](https://asciinema.org/a/Vih2GPNGo34FCWmXS0c1fpVFc)
+
+### asciinema.org ./bin/gendiff comparing json files, format "stylish":
+[![asciicast](https://asciinema.org/a/kQNnqMcnsBvt4ZYZap1qVc8DE.svg)](https://asciinema.org/a/kQNnqMcnsBvt4ZYZap1qVc8DE)

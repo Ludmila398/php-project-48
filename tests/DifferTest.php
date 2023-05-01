@@ -18,16 +18,15 @@ class DifferTest extends TestCase
             genDiff($firstJsonFilePath, $secondJsonFilePath)
         );
 
-        $testFilePath = __DIR__ . "/fixtures/TestResultFlatFiles.txt";
-        $expectedResult = file_get_contents($testFilePath);
-        $this->assertEquals($expectedResult, genDiff($firstJsonFilePath, $secondJsonFilePath));
+        $testFilePath = __DIR__ . "/fixtures/TestResultFilesRecursiveStructure.txt";
+        $expectedRecursiveResult = file_get_contents($testFilePath);
 
-        $firstYmlFilePath = __DIR__ . "/fixtures/file21.yml";
-        $secondYmlFilePath = __DIR__ . "/fixtures/file22.yml";
-        $this->assertEquals($expectedResult, genDiff($firstYmlFilePath, $secondYmlFilePath));
+        $thirdJsonFilePath = __DIR__ . "/fixtures/file41.json";
+        $fourthJsonFilePath = __DIR__ . "/fixtures/file42.json";
+        $this->assertEquals($expectedRecursiveResult, genDiff($thirdJsonFilePath, $fourthJsonFilePath));
 
-        $firstYamlFilePath = __DIR__ . "/fixtures/file31.yaml";
-        $secondYamlFilePath = __DIR__ . "/fixtures/file32.yaml";
-        $this->assertEquals($expectedResult, genDiff($firstYmlFilePath, $secondYmlFilePath));
+        $thirdYamlFilePath = __DIR__ . "/fixtures/file51.yaml";
+        $fourthYamlFilePath = __DIR__ . "/fixtures/file52.yaml";
+        $this->assertEquals($expectedRecursiveResult, genDiff($thirdYamlFilePath, $fourthYamlFilePath));
     }
 }

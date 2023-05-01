@@ -3,47 +3,65 @@
 namespace Differ\Differ;
 
 use function Differ\Parsers\parseFile;
+use function Differ\Formatter\formatFile;
 
-function genDiff(string $firstFilePath, string $secondFilePath, string $format = 'stylish'): string
+function buildAST(mixed $decodedFirstFile, mixed $decodedSecondFile): mixed {
+
+    $firstFileKeys = array_keys($decodedFirstFile);
+    $secondFileKeys = array_keys($decodedSecondFile);
+    $bothFilesKeys = array_unique(array_merge($firstFileKeys, $secondFileKeys));
+    sort($bothFilesKeys);
+
+    return array_map(function ($key) use ($decodedFirstFile, $decodedSecondFile) {
+        $firstValue = $decodedFirstFile[$key] ?? null;
+        $secondValue = $decodedSecondFile[$key] ?? null;
+
+        if (is_array($firstValue) && is_array($secondValue)) {
+            return ['status' => 'nested',
+                'key' => $key,
+                'firstValue' => buildAST($firstValue, $secondValue),
+                'secondValue' => null];
+        }
+
+        if (!array_key_exists($key, $decodedFirstFile)) {
+            return ['status' => 'added',
+                'key' => $key,
+                'firstValue' => $secondValue,
+                'secondValue' => null];
+        }
+
+        if (!array_key_exists($key, $decodedSecondFile)) {
+            return ['status' => 'deleted',
+                'key' => $key,
+                'firstValue' => $firstValue,
+                'secondValue' => null];
+        }
+
+        if ($firstValue !== $secondValue) {
+            return ['status' => 'changed',
+                'key' => $key,
+                'firstValue' => $firstValue,
+                'secondValue' => $secondValue];
+        }
+
+        return ['status' => 'unchanged',
+            'key' => $key,
+            'firstValue' => $firstValue,
+            'secondValue' => null];
+    }, $bothFilesKeys);
+}
+
+
+function genDiff(string $firstFilePath, string $secondFilePath, string $format = 'stylish') : string
 {
 
     $decodedFirstFile = parseFile($firstFilePath);
     $decodedSecondFile = parseFile($secondFilePath);
 
-    $mergedArr = array_merge($decodedFirstFile, $decodedSecondFile);
-    ksort($mergedArr);
-    $arrDiff = [];
-    foreach ($mergedArr as $key => $value) {
-        if (
-            (array_key_exists($key, $decodedSecondFile)) &&
-            (array_key_exists($key, $decodedFirstFile)) &&
-            ($decodedFirstFile[$key] !== $decodedSecondFile[$key])
-        ) {
-            $arrDiff[] = ['-', $key, ':', $decodedFirstFile[$key]];
-            $arrDiff[] = ['+', $key, ':', $value];
-        } elseif (!array_key_exists($key, $decodedSecondFile)) {
-            $arrDiff[] = ['-', $key, ':', $value];
-        } elseif (
-            (array_key_exists($key, $decodedSecondFile) && (array_key_exists($key, $decodedFirstFile))
-            && ($decodedFirstFile[$key] === $decodedSecondFile[$key]))
-        ) {
-            $arrDiff[] = [' ', $key, ':', $value];
-        } elseif (!array_key_exists($key, $decodedFirstFile)) {
-            $arrDiff[] = ['+', $key, ':', $value];
-        }
-    }
-
-    $result = '';
-    $finalString = '';
-
-    foreach ($arrDiff as $subArray) {
-        $subArray[3] = convertBoolToString($subArray[3]);
-        $string = implode(' ', $subArray);
-        $finalString = "{$finalString}{$string}\n";
-        $result = "{\n{$finalString}}";
-    }
-    return $result;
+    $diff = buildAST($decodedFirstFile, $decodedSecondFile);
+    return formatFile($format, $diff);
 }
+
 
 function convertBoolToString($value)
 {
