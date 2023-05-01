@@ -34,8 +34,8 @@ function formatStylish(mixed $array, int $spacesCount = 0): string
                 return "$stringBeginning  - $key: $stringifyFirstValue";
             case 'changed':
                 $stringifySecondValue = stringify($secondValue, $spacesCount + 1);
-                return "$stringBeginning  - $key: $stringifyFirstValue\n 
-                $stringBeginning + $key: $stringifySecondValue";
+                return
+                "$stringBeginning  - $key: $stringifyFirstValue\n $stringBeginning + $key: $stringifySecondValue";
             default:
                 return null;
         };
