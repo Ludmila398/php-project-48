@@ -28,5 +28,10 @@ class DifferTest extends TestCase
         $thirdYamlFilePath = __DIR__ . "/fixtures/file51.yaml";
         $fourthYamlFilePath = __DIR__ . "/fixtures/file52.yaml";
         $this->assertEquals($expectedRecursiveResult, genDiff($thirdYamlFilePath, $fourthYamlFilePath));
+
+        $PlainFilePath = __DIR__ . "/fixtures/TestResultFilesPlainFormat.txt";
+        $expectedPlainResult = file_get_contents($PlainFilePath);
+
+        $this->assertEquals($expectedPlainResult, genDiff($thirdJsonFilePath, $fourthJsonFilePath, 'plain'));
     }
 }

@@ -18,3 +18,7 @@
 
 ### asciinema.org ./bin/gendiff comparing json files, format "stylish":
 [![asciicast](https://asciinema.org/a/kQNnqMcnsBvt4ZYZap1qVc8DE.svg)](https://asciinema.org/a/kQNnqMcnsBvt4ZYZap1qVc8DE)
+
+### asciinema.org ./bin/gendiff comparing json files, format "plain":
+[![asciicast](https://asciinema.org/a/Iwh3qrDJd1S5GFtQ6V9mLuzs5.svg)](https://asciinema.org/a/Iwh3qrDJd1S5GFtQ6V9mLuzs5)
+

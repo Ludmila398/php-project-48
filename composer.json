@@ -19,7 +19,8 @@
             "src/Differ.php",
             "src/Parsers.php",
             "src/Formatters/Stylish.php",
-            "src/Formatter.php"
+            "src/Formatters/Plain.php",
+            "src/Formatters.php"
         ]
     },
     "require-dev": {
