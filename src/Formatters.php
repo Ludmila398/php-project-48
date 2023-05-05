@@ -10,7 +10,7 @@ function formatFile(string $format, mixed $diff): string
     if ($format === 'stylish') {
         return formatStylish($diff);
     } elseif ($format === 'plain') {
-        return formatPlain($diff);    
+        return formatPlain($diff);
     } else {
         return "Invalid format!\n";
     }

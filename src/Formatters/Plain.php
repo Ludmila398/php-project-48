@@ -6,7 +6,7 @@ function formatPlain(mixed $array): string
 {
     $result = function (array $node, string $previousKeys = '') use (&$result) {
         $mappedArray = array_map(function ($value) use ($result, $previousKeys) {
-           
+
             $status = $value['status'];
             $key = $value['key'];
             $firstValue = $value['firstValue'];
