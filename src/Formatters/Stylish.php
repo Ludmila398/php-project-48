@@ -2,7 +2,7 @@
 
 namespace Differ\Formatters\Stylish;
 
-function convertBoolToString($value)
+function convertBoolToString(mixed $value): mixed
 {
     return (!is_bool($value) ? $value : ($value ? 'true' : 'false'));
 }
@@ -14,13 +14,13 @@ function formatStylish(mixed $array, int $spacesCount = 0): string
 
         $status = $destructuredArray['status'];
         $key = $destructuredArray['key'];
-        $firstValue = $destructuredArray['firstValue'];
-        $secondValue = $destructuredArray['secondValue'];
+        $firstOriginalValue = $destructuredArray['firstValue'];
+        $secondOriginalValue = $destructuredArray['secondValue'];
 
-        $stringifyFirstValue = stringify($firstValue, $spacesCount + 1);
+        $stringifyFirstValue = stringify($firstOriginalValue, $spacesCount + 1);
 
-        $firstValue = convertBoolToString($firstValue);
-        $secondValue = convertBoolToString($secondValue);
+        $firstValue = convertBoolToString($firstOriginalValue);
+        $secondValue = convertBoolToString($secondOriginalValue);
         switch ($status) {
             case 'nested':
                 $nestedValue = is_array($firstValue)
