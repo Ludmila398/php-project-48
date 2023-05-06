@@ -4,6 +4,7 @@ namespace Differ\Differ;
 
 use function Differ\Parsers\parseFile;
 use function Differ\Formatter\formatFile;
+use function Functional\sort;
 
 function buildAST(mixed $decodedFirstFile, mixed $decodedSecondFile): mixed
 {
@@ -11,7 +12,7 @@ function buildAST(mixed $decodedFirstFile, mixed $decodedSecondFile): mixed
     $firstFileKeys = array_keys($decodedFirstFile);
     $secondFileKeys = array_keys($decodedSecondFile);
     $bothFilesKeys = array_unique(array_merge($firstFileKeys, $secondFileKeys));
-    sort($bothFilesKeys);
+    $sortedFilesKeys = sort($bothFilesKeys, fn ($left, $right) => strcmp($left, $right));
 
     return array_map(function ($key) use ($decodedFirstFile, $decodedSecondFile) {
         $firstValue = $decodedFirstFile[$key] ?? null;
@@ -49,7 +50,7 @@ function buildAST(mixed $decodedFirstFile, mixed $decodedSecondFile): mixed
             'key' => $key,
             'firstValue' => $firstValue,
             'secondValue' => null];
-    }, $bothFilesKeys);
+    }, $sortedFilesKeys);
 }
 
 
@@ -64,7 +65,7 @@ function genDiff(string $firstFilePath, string $secondFilePath, string $format =
 }
 
 
-function convertBoolToString($value)
+/*function convertBoolToString(mixed $value): 
 {
     return (!is_bool($value) ? $value : ($value ? 'true' : 'false'));
 }
@@ -74,3 +75,4 @@ function getFixtureFullPath($fixtureName) //// абс.путь к файлам
     $parts = [__DIR__, 'fixtures', $fixtureName];
     return realpath(implode('/', $parts));
 }
+*/
