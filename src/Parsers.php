@@ -12,8 +12,8 @@ function parseFile(string $filePath)
         if (pathinfo($filePath, PATHINFO_EXTENSION) === 'json') {
             $decodedFile = json_decode($fileContent, true);
         } else {
-        $decodedFile = Yaml::parse($fileContent);
+            $decodedFile = Yaml::parse($fileContent);
         }
-    return $decodedFile;
+        return $decodedFile;
     }
 }
