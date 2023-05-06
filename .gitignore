@@ -1,5 +1,5 @@
 /vendor/
-/.idea
-/.vscode
-/.phpunit.cache
-/codeclimate-master
+/.idea/
+/.vscode/
+/.phpunit.cache/
+/codeclimate-master/
