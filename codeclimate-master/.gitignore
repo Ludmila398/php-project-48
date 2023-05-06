@@ -1,5 +1,0 @@
-*.gem
-coverage
-spec/reports
-base_rubocop.yml
-artifacts.tar.gz
