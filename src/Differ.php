@@ -65,7 +65,7 @@ function genDiff(string $firstFilePath, string $secondFilePath, string $format =
 }
 
 
-/*function convertBoolToString(mixed $value): 
+/*function convertBoolToString(mixed $value):
 {
     return (!is_bool($value) ? $value : ($value ? 'true' : 'false'));
 }
