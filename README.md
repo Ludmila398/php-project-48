@@ -22,3 +22,5 @@
 ### asciinema.org ./bin/gendiff comparing json files, format "plain":
 [![asciicast](https://asciinema.org/a/Iwh3qrDJd1S5GFtQ6V9mLuzs5.svg)](https://asciinema.org/a/Iwh3qrDJd1S5GFtQ6V9mLuzs5)
 
+### asciinema.org ./bin/gendiff comparing json files, format "json":
+[![asciicast](https://asciinema.org/a/8TpP8hEnRkEX3xbNm64Zr8RBP.svg)](https://asciinema.org/a/8TpP8hEnRkEX3xbNm64Zr8RBP)

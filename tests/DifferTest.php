@@ -33,5 +33,10 @@ class DifferTest extends TestCase
         $expectedPlainResult = file_get_contents($PlainFilePath);
 
         $this->assertEquals($expectedPlainResult, genDiff($thirdJsonFilePath, $fourthJsonFilePath, 'plain'));
+
+        $JsonFilePath = __DIR__ . "/fixtures/TestResultFilesJsonFormat.txt";
+        $expectedPlainResult = file_get_contents($JsonFilePath);
+
+        $this->assertEquals($expectedPlainResult, genDiff($thirdJsonFilePath, $fourthJsonFilePath, 'json'));
     }
 }
