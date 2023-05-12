@@ -63,4 +63,3 @@ function genDiff(string $firstFilePath, string $secondFilePath, string $format =
     $diff = buildAST($decodedFirstFile, $decodedSecondFile);
     return formatFile($format, $diff);
 }
-

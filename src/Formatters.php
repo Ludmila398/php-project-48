@@ -8,13 +8,14 @@ use function Differ\Formatters\Json\formatJson;
 
 function formatFile(string $format, mixed $diff): string
 {
-    if ($format === 'stylish') {
-        return formatStylish($diff);
-    } elseif ($format === 'plain') {
-        return formatPlain($diff);
-    } elseif ($format === 'json') {
-        return formatJson($diff);
-    } else {
-        return "Invalid format!\n";
+    switch ($format) {
+        case 'stylish':
+            return formatStylish($diff);
+        case 'plain':
+            return formatPlain($diff);
+        case 'json':
+            return formatJson($diff);
+        default:
+            return "Invalid format!\n";
     }
 }
