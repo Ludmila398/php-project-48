@@ -64,15 +64,3 @@ function genDiff(string $firstFilePath, string $secondFilePath, string $format =
     return formatFile($format, $diff);
 }
 
-
-/*function convertBoolToString(mixed $value):
-{
-    return (!is_bool($value) ? $value : ($value ? 'true' : 'false'));
-}
-
-function getFixtureFullPath($fixtureName) //// абс.путь к файлам
-{
-    $parts = [__DIR__, 'fixtures', $fixtureName];
-    return realpath(implode('/', $parts));
-}
-*/
