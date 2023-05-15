@@ -8,7 +8,7 @@ use function Differ\Differ\genDiff;
 
 class DifferTest extends TestCase
 {
-    public function testDiffer(): void
+    public function testDifferPaths(): void
     {
         $firstJsonFilePath = __DIR__ . "/fixtures/file1.json";
         $secondJsonFilePath = __DIR__ . "/fixtures/file2.json";
@@ -19,33 +19,62 @@ class DifferTest extends TestCase
         );
     }
 
-    public function testStylishDiffer(): void
-    {
-        $testFilePath = __DIR__ . "/fixtures/TestResultFilesRecursiveStructure.txt";
-        $expectedRecursiveResult = file_get_contents($testFilePath);
-        $thirdJsonFilePath = __DIR__ . "/fixtures/file41.json";
-        $fourthJsonFilePath = __DIR__ . "/fixtures/file42.json";
-        $this->assertEquals($expectedRecursiveResult, genDiff($thirdJsonFilePath, $fourthJsonFilePath));
-        $thirdYamlFilePath = __DIR__ . "/fixtures/file51.yaml";
-        $fourthYamlFilePath = __DIR__ . "/fixtures/file52.yaml";
-        $this->assertEquals($expectedRecursiveResult, genDiff($thirdYamlFilePath, $fourthYamlFilePath));
+    /**
+    * @dataProvider genDiffProvider
+    */
+    public function testDiffer(
+        string $firstFilePath,
+        string $secondFilePath,
+        string $expectedResultPath,
+        string $format
+    ): void {
+        $expectedResult = file_get_contents($expectedResultPath);
+        $this->assertEquals($expectedResult, genDiff($firstFilePath, $secondFilePath, $format));
     }
 
-    public function testPlainDiffer(): void
+    public function genDiffProvider(): mixed
     {
-        $thirdJsonFilePath = __DIR__ . "/fixtures/file41.json";
-        $fourthJsonFilePath = __DIR__ . "/fixtures/file42.json";
-        $PlainFilePath = __DIR__ . "/fixtures/TestResultFilesPlainFormat.txt";
-        $expectedPlainResult = file_get_contents($PlainFilePath);
-        $this->assertEquals($expectedPlainResult, genDiff($thirdJsonFilePath, $fourthJsonFilePath, 'plain'));
-    }
+        $fixturesPath = __DIR__ . "";
 
-    public function testJsonDiffer(): void
-    {
-        $thirdJsonFilePath = __DIR__ . "/fixtures/file41.json";
-        $fourthJsonFilePath = __DIR__ . "/fixtures/file42.json";
-        $JsonFilePath = __DIR__ . "/fixtures/TestResultFilesJsonFormat.txt";
-        $expectedPlainResult = file_get_contents($JsonFilePath);
-        $this->assertEquals($expectedPlainResult, genDiff($thirdJsonFilePath, $fourthJsonFilePath, 'json'));
+        return [
+            'stylish json'  => [
+                $fixturesPath . "/fixtures/file41.json",
+                $fixturesPath . "/fixtures/file42.json",
+                $fixturesPath . "/fixtures/TestResultFilesRecursiveStructure.txt",
+                'stylish'
+            ],
+
+            'stylish yaml'  => [
+                $fixturesPath . "/fixtures/file51.yaml",
+                $fixturesPath . "/fixtures/file52.yaml",
+                $fixturesPath . "/fixtures/TestResultFilesRecursiveStructure.txt",
+                'stylish'
+            ],
+            'plain json'  => [
+                $fixturesPath . "/fixtures/file41.json",
+                $fixturesPath . "/fixtures/file42.json",
+                $fixturesPath . "/fixtures/TestResultFilesPlainFormat.txt",
+                'plain'
+            ],
+            'plain yaml'  => [
+                $fixturesPath . "/fixtures/file51.yaml",
+                $fixturesPath . "/fixtures/file52.yaml",
+                $fixturesPath . "/fixtures/TestResultFilesPlainFormat.txt",
+                'plain'
+            ],
+            'json json'  => [
+                $fixturesPath . "/fixtures/file41.json",
+                $fixturesPath . "/fixtures/file42.json",
+                $fixturesPath . "/fixtures/TestResultFilesJsonFormat.txt",
+                'json'
+            ],
+            'json yaml'  => [
+                $fixturesPath . "/fixtures/file51.yaml",
+                $fixturesPath . "/fixtures/file52.yaml",
+                $fixturesPath . "/fixtures/TestResultFilesJsonFormat.txt",
+                'json'
+            ],
+
+        ];
     }
 }

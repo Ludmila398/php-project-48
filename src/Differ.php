@@ -8,7 +8,6 @@ use function Functional\sort;
 
 function buildAST(mixed $decodedFirstFile, mixed $decodedSecondFile): mixed
 {
-
     $firstFileKeys = array_keys($decodedFirstFile);
     $secondFileKeys = array_keys($decodedSecondFile);
     $bothFilesKeys = array_unique(array_merge($firstFileKeys, $secondFileKeys));
@@ -53,10 +52,8 @@ function buildAST(mixed $decodedFirstFile, mixed $decodedSecondFile): mixed
     }, $sortedFilesKeys);
 }
 
-
 function genDiff(string $firstFilePath, string $secondFilePath, string $format = 'stylish'): string
 {
-
     $decodedFirstFile = parseFile($firstFilePath);
     $decodedSecondFile = parseFile($secondFilePath);
 
