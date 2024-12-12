@@ -30,13 +30,6 @@ jobs:
       
     - name: Run tests
       run: make test  
-
-    - name: Run database prepare 
-      run: make database-prepare
-    - name: Run npm intall
-      run: make install-npm
-    - name: Run test
-      run: ./vendor/bin/pest  
       
     - name: Run test & publish code coverage
       uses: paambaati/codeclimate-action@v3.2.0

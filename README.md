@@ -5,10 +5,10 @@
 [![PHP Linter and Tests](https://github.com/Ludmila398/php-project-48/actions/workflows/main.yml/badge.svg)](https://github.com/Ludmila398/php-project-48/actions/workflows/main.yml)
 
 ### Codeclimate Maintainability Badge
-[![Maintainability](https://api.codeclimate.com/v1/badges/8ebbbdebc36cbf4da693/maintainability)](https://codeclimate.com/github/Ludmila398/php-project-48/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/13bd7859279f11041dc4/maintainability)](https://codeclimate.com/github/Ludmila398/php-project-diff-generator/maintainability)
 
 ### Codeclimate Test Coverage Badge
-[![Test Coverage](https://api.codeclimate.com/v1/badges/8ebbbdebc36cbf4da693/test_coverage)](https://codeclimate.com/github/Ludmila398/php-project-48/test_coverage)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/13bd7859279f11041dc4/test_coverage)](https://codeclimate.com/github/Ludmila398/php-project-diff-generator/test_coverage)
 
 ## II
 
